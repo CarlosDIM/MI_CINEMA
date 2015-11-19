@@ -43,12 +43,13 @@ class User extends Model implements AuthenticatableContract,
     }
 
     public function setPassword($password) {
-        if(!empty($password)){
+        /*if(!empty($password)){
             $password = \Hash::make($password);
-        }
+        }*/
         $this->password=$password;
     }
     public function getPassword(){
+
         return $this->password;
     }
 
@@ -94,6 +95,13 @@ class User extends Model implements AuthenticatableContract,
 
         return true;
 
+    }
+
+    public function setPasswordAttribute($valor)
+    {
+        if (!empty($valor)) {
+            $this->attributes['password'] = \Hash::make($valor);
+        }
     }
 
 }

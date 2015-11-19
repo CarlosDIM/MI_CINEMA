@@ -43,12 +43,9 @@ class LogController extends Controller
         if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']]))
         {
             return Redirect::to('admin');
-        }else{
-            Session::flash('message-error','datos incorrectos');
-            return  Redirect::to('/');
         }
-
-
+        Session::flash('message-error','datos incorrectos');
+        return Redirect::to('/');
     }
 
     /**
